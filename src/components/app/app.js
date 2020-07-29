@@ -17,6 +17,7 @@ import {
   PlanetDetails,
   StarshipDetails
 } from '../sw-components'
+import { ServiceProvider } from '../context'
 import './app.css';
 
 export default class App extends Component {
@@ -51,7 +52,7 @@ export default class App extends Component {
     }
 
     return (
-      <div>
+      <ServiceProvider value={this.swapiService}>
         <Header />
         {planet}
         <button
@@ -73,7 +74,7 @@ export default class App extends Component {
             <PersonDetails itemId={5}/>
           </div>
         </div>
-      </div>
+      </ServiceProvider>
     );
   }
 };

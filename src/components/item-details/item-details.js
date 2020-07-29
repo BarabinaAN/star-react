@@ -24,7 +24,7 @@ export default class ItemDetails extends Component {
   }
 
   updateItem() {
-    const { itemId, getData, renderItem, getImageUrl } = this.props
+    const { itemId, getData, getImageUrl } = this.props
 
     if (!itemId) {
       setTimeout(() => {
@@ -51,7 +51,6 @@ export default class ItemDetails extends Component {
     const spinner = loading ? <Spinner /> : null
     const notSelect = !loading && !item ? <span>Выбирите пресонажа</span> : null
     const content = !loading && item ? <ItemView item={item} image={image} children = {this.props.children}/> : null
-    console.log(item);
 
     return (
       <div className="person-details card">
@@ -84,6 +83,7 @@ const ItemView = ({ item, image, children }) => {
   )
 }
 
+
 const Record = ({ item, field, label }) => {
 
   return (
@@ -93,6 +93,5 @@ const Record = ({ item, field, label }) => {
     </li>
   )
 }
-export {
-  Record
-}
+
+export { Record }
