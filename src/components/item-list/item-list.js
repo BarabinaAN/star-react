@@ -1,16 +1,11 @@
 import React from 'react';
-import { withData } from '../hoc-helper'
-import SwapiService from '../../services/swapi-service';
 import './item-list.css';
 
+const ItemList = ({ data, onItemSelected, children}) => {
 
-const { getAllPeople } = new SwapiService();
-
-const ItemList = ({ data, renderItem, onItemSelected }) => {
-
-  const item = data.map((item) => {
+  const items = data.map((item) => {
     const { id } = item
-    const label = renderItem(item)
+    const label = children(item)
 
     return (
       <li
@@ -23,12 +18,11 @@ const ItemList = ({ data, renderItem, onItemSelected }) => {
     )
   })
 
-
   return (
     <ul className="item-list list-group">
-      {item}
+      {items}
     </ul>
   );
 }
 
-export default withData(ItemList, getAllPeople)
+export default ItemList

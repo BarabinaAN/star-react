@@ -9,7 +9,14 @@ import PeoplePage from '../people-page';
 import ItemList from '../item-list';
 import ItemDetails, {Record} from '../item-details';
 import SwapiService from '../../services/swapi-service'
-
+import {
+  PersonList,
+  PlanetList,
+  StarshipList,
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails
+} from '../sw-components'
 import './app.css';
 
 export default class App extends Component {
@@ -56,24 +63,14 @@ export default class App extends Component {
         </button>
         <ErrorButton />
 
-        <PeoplePage />
+        {/* <PeoplePage /> */}
         <div className="row mb2">
           <div className="col-md-6">
-            <ItemList
-              onItemSelected={this.onPersonSelected}
-              getData = {getAllPlanets}
-              renderItem = {({name}) => name}
-            />
+            <PlanetList onItemSelected={this.onPersonSelected} />
+            <StarshipList/>
           </div>
           <div className="col-md-6">
-            <ItemDetails 
-              itemId={3} 
-              getData = {getStarship}
-              getImageUrl={getStarshipImg}
-            > 
-              <Record field='model' label='Model' />
-              <Record field='costInCredits' label='Cost In Credits' />
-            </ItemDetails>
+            <PersonDetails itemId={5}/>
           </div>
         </div>
       </div>
