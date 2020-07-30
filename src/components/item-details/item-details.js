@@ -15,7 +15,9 @@ export default class ItemDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.itemId !== prevProps.itemId) {
+    if (this.props.itemId !== prevProps.itemId || 
+      this.props.getData !== prevProps.getData || 
+      this.props.getImageUrl !== prevProps.getImageUrl) {
       if (!this.state.loading) {
         this.setState({ loading: true })
       }
@@ -67,7 +69,7 @@ const ItemView = ({ item, image, children }) => {
 
   return (
     <React.Fragment>
-      <img className="person-image" src={image} />
+      <img className="person-image" src={image} alt=''/>
 
       <div className="card-body">
         <h4>{name}</h4>

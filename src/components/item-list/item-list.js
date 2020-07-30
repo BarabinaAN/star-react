@@ -6,7 +6,6 @@ const ItemList = ({ data, onItemSelected, children}) => {
   const items = data.map((item) => {
     const { id } = item
     const label = children(item)
-
     return (
       <li
         className="list-group-item"

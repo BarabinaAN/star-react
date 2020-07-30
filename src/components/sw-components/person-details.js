@@ -3,18 +3,20 @@ import ItemDetails, { Record } from '../item-details'
 import { withContext } from '../hoc-helper'
 
 
-const PersonDetails = ({ itemId, swapiService }) => {
-   const { getPerson, getPersonImg } = swapiService
+const PersonDetails = (props) => {
    return (
-      <ItemDetails
-         itemId={itemId}
-         getData={getPerson}
-         getImageUrl={getPersonImg}
-      >
+      <ItemDetails {...props} >
          <Record field='gender' label='Gender' />
          <Record field='eyeColor' label='Eye Color' />
       </ItemDetails>
    )
 }
 
-export default withContext(PersonDetails)
+const mapMethodsToProps = (swapiService) => {
+   return {
+      getData: swapiService.getPerson,
+      getImageUrl: swapiService.getPersonImg
+   }
+}
+
+export default withContext(PersonDetails, mapMethodsToProps)
