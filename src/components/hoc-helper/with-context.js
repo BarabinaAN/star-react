@@ -1,7 +1,7 @@
 import React from 'react'
 import { ServiceConsumer } from '../context'
 
-const withContext = (View, mapProps) => {
+const withContext = (mapProps) => (View) => {
    return (props) => {
       return (
          <ServiceConsumer>
