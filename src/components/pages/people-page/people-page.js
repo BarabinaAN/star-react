@@ -5,6 +5,7 @@ import ErrorBoundry from '../../error-boundry'
 
 import './people-page.css'
 
+
 export default class PeoplePage extends Component {
     state = {
         selectedItem: null,
