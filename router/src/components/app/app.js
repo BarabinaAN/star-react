@@ -7,9 +7,10 @@ import TestSwapiService from '../../services/test-swapi-service'
 import PeoplePage from '../pages/people-page'
 import PlanetPage from '../pages/planet-page'
 import StarshipPage from '../pages/starship-page'
+import ErrorPage from '../pages/404-page'
 import { StarshipDetails } from '../sw-components'
 import { ServiceProvider } from '../context'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import './app.css';
 
 export default class App extends Component {
@@ -35,20 +36,23 @@ export default class App extends Component {
         <Router>
           <Header onServiceChange={this.onServiceChange}/>
           <RandomPlanet/>
-          <Route path='/' exact>
-            <h2>Welcome</h2>
-          </Route>
-          <Route path='/people/:id?' component={PeoplePage} />
-          <Route path='/planets' component={PlanetPage}/>
-          <Route path='/starships' exact component={StarshipPage}/>
-          <Route path='/starships/:id' 
-                render={
-                  ({ match })=> {
-                    const { id } = match.params
-                    return <StarshipDetails itemId={id} />
+          <Switch>
+            <Route path='/' exact>
+              <h2>Welcome</h2>
+            </Route>
+            <Route path='/people/:id?' component={PeoplePage} />
+            <Route path='/planets' component={PlanetPage}/>
+            <Route path='/starships' exact component={StarshipPage}/>
+            <Route path='/starships/:id' 
+                  render={
+                    ({ match })=> {
+                      const { id } = match.params
+                      return <StarshipDetails itemId={id} />
+                    }
                   }
-                }
-          />
+            />
+            <Route component={ErrorPage}/>
+          </Switch>
         </Router>
       </ServiceProvider>
     );
